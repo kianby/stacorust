@@ -1,24 +1,31 @@
-use std::io;
-use std::io::prelude::*;
-use std::fs::File;
-use toml;
-use serde::Deserialize;
-//use serde::serde_derive::Deserialize;
-//use serde::{Serialize, Deserialize};
+// --------------------------------------------------------------------------
+//  stacorust.main
+// --------------------------------------------------------------------------
 
-#[derive(Deserialize)]
-struct Config {
-    lang: String,
-    db_url: String
-}
+extern crate stacorust;
 
-fn main() -> io::Result<()> {
+use stacorust::Config;
+use std::env;
 
-    let mut f = File::open("configtest.toml")?;
-    let mut buffer = String::new();
-    f.read_to_string(&mut buffer)?;
-    let config: Config = toml::from_str(&buffer).unwrap();
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    if args.len() != 2 {
+        println!("Usage: {} <config.toml>", args[0]);
+        std::process::exit(1);
+    }
+    let filename = &args[1];
+    println!("filename = {}", &filename);
+
+    let config = Config::new(filename).unwrap_or_else(|err| {
+        eprintln!("Problem reading configuration: {}", err);
+        std::process::exit(1)
+    });
+
     println!("lang = {}", config.lang);
     println!("db url = {}", config.db_url);
-    Ok(())
+
+    // if let Err(e) = run(config) {
+    //     println!("Application error: {}", e);
+    //     std::process::exit(1);
+    // }
 }

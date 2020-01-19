@@ -18,7 +18,7 @@ impl Config {
         let mut f = File::open(filename)?;
         let mut buffer = String::new();
         f.read_to_string(&mut buffer)?;
-        let config: Config = toml::from_str(&buffer).unwrap();
+        let config: Config = toml::from_str(&buffer)?;
         Ok(config)
     }
 }

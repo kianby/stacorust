@@ -14,10 +14,10 @@ fn main() {
         std::process::exit(1);
     }
     let filename = &args[1];
-    println!("filename = {}", &filename);
+    println!("Read configuration = {}", &filename);
 
     let config = Config::new(filename).unwrap_or_else(|err| {
-        eprintln!("Problem reading configuration: {}", err);
+        println!("Configuration error: {}", err);
         std::process::exit(1)
     });
 

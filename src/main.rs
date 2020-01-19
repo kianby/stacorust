@@ -2,10 +2,13 @@
 //  stacorust.main
 // --------------------------------------------------------------------------
 
-extern crate stacorust;
-
-use stacorust::Config;
 use std::env;
+
+mod config;
+use config::Config;
+
+mod template;
+use template::Template;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -24,6 +27,7 @@ fn main() {
     println!("lang = {}", config.lang);
     println!("db url = {}", config.db_url);
 
+    let _t: Template;
     // if let Err(e) = run(config) {
     //     println!("Application error: {}", e);
     //     std::process::exit(1);

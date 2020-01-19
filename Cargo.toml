@@ -7,6 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rust-ini = "0.14.0"
+serde = { version = "1.0.104", features = ["derive"] }
+toml = "0.5.6"
 imap = "1.0.2"
 lettre = "0.9.2"

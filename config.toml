@@ -1,0 +1,32 @@
+# TOML configuration
+
+lang = "fr"
+db_url = "sqlite:///db.sqlite"
+newcomment_polling = 60
+salt = BRRJRqXgGpXWrgTidBPcixIThHpDuKc0
+secret = Uqca5Kc8xuU6THz9
+
+[http]
+url = "http://localhost:8100"
+host = "0.0.0.0"
+port = 8100
+
+[rss]
+proto = http
+file = comments.xml
+
+[mail]
+
+[mail.imap]
+host = "mail.gandi.net"
+ssl = false
+port = 993
+login = "blog@mydomain.com"
+password = "MYPASSWORD"
+
+[mail.smtp]
+host = "mail.gandi.net"
+starttls = true
+port = 587
+login = "blog@mydomain.com"
+password = "MYPASSWORD"

@@ -3,9 +3,6 @@
 // --------------------------------------------------------------------------
 
 #[macro_use]
-extern crate lazy_static;
-
-#[macro_use]
 extern crate rust_embed;
 
 use std::env;
@@ -32,10 +29,10 @@ fn main() {
     println!("lang = {}", config.lang);
     println!("db url = {}", config.db_url);
 
-    let ot = template::get_template(config.lang, "drop_comment".to_string());
-    match ot {
+    let something = template::get_template(config.lang, "drop_comment".to_string());
+    match something {
       None => println!("Not found"),
-      Some(tpl) => println!("{:?}", std::str::from_utf8(tpl.as_ref())),
+      Some(template) => println!("{:?}", std::str::from_utf8(template.as_ref())),
     }
 
 

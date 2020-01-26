@@ -2,10 +2,11 @@
 //  stacorust.main
 // --------------------------------------------------------------------------
 
+use std::collections::HashMap;
+use std::env;
+
 #[macro_use]
 extern crate rust_embed;
-
-use std::env;
 
 mod config;
 use config::Config;
@@ -29,12 +30,12 @@ fn main() {
     println!("lang = {}", config.lang);
     println!("db url = {}", config.db_url);
 
-    let something = template::get_template(config.lang, "drop_comment".to_string());
+    let noparams: HashMap<String, String> = HashMap::new();
+    let something = template::get_template(config.lang, "drop_comment".to_string(), &noparams);
     match something {
-      None => println!("Not found"),
-      Some(template) => println!("{:?}", std::str::from_utf8(template.as_ref())),
+        None => println!("Not found"),
+        Some(template) => println!("{:?}", template),
     }
-
 
     // if let Err(e) = run(config) {
     //     println!("Application error: {}", e);

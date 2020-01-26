@@ -5,13 +5,15 @@
 #[macro_use]
 extern crate lazy_static;
 
+#[macro_use]
+extern crate rust_embed;
+
 use std::env;
 
 mod config;
 use config::Config;
 
 mod template;
-use template::Locale;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -30,11 +32,12 @@ fn main() {
     println!("lang = {}", config.lang);
     println!("db url = {}", config.db_url);
 
-    let ot = template::find_template(Locale::EN, "t1");
+    let ot = template::get_template(config.lang, "drop_comment".to_string());
     match ot {
       None => println!("Not found"),
-      Some(t) => println!("Result is \"{}\".", t),
+      Some(tpl) => println!("{:?}", std::str::from_utf8(tpl.as_ref())),
     }
+
 
     // if let Err(e) = run(config) {
     //     println!("Application error: {}", e);

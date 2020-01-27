@@ -8,9 +8,13 @@ use std::collections::HashMap;
 #[folder = "templates/"]
 struct Asset;
 
-fn fill_template(template: String, _params: &HashMap<String, String>) -> String {
-    // TODO replace params {{ param 1 }}
-    template
+fn fill_template(template: String, params: &HashMap<String, String>) -> String {
+    let content: &mut String = template.clone();
+    for (name, value) in params {
+        let pattern = format!("{{{{ {} }}}}", name);
+        content = content.replace(&pattern, value);
+    }
+    content
 }
 
 pub fn get_template(

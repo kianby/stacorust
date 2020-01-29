@@ -9,7 +9,7 @@ use std::collections::HashMap;
 struct Asset;
 
 fn fill_template(template: String, params: &HashMap<String, String>) -> String {
-    let content: &mut String = template.clone();
+    let mut content = template;
     for (name, value) in params {
         let pattern = format!("{{{{ {} }}}}", name);
         content = content.replace(&pattern, value);
@@ -56,5 +56,12 @@ mod tests {
                 &noparams
             )
         );
+    }
+
+    #[test]
+    fn fill_template_test() {
+        let mut p= HashMap::new();
+        p.insert("var".to_string(), "toto".to_string());
+        assert_eq!("test=toto", fill_template("test={{ var }}".to_string(), &p))
     }
 }

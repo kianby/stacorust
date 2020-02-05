@@ -2,7 +2,6 @@
 //  stacorust.main
 // --------------------------------------------------------------------------
 
-use std::collections::HashMap;
 use std::env;
 
 #[macro_use]
@@ -30,8 +29,7 @@ fn main() {
     println!("lang = {}", config.lang);
     println!("db url = {}", config.db_url);
 
-    let noparams: HashMap<String, String> = HashMap::new();
-    let something = template::get_template(config.lang, "drop_comment".to_string(), &noparams);
+    let something = template::get_template_new_comment(config.lang, "http://blog".to_string(), "Mon commentaire".to_string());
     match something {
         None => println!("Not found"),
         Some(template) => println!("{:?}", template),

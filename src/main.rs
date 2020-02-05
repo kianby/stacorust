@@ -29,7 +29,11 @@ fn main() {
     println!("lang = {}", config.lang);
     println!("db url = {}", config.db_url);
 
-    let something = template::get_template_new_comment(config.lang, "http://blog".to_string(), "Mon commentaire".to_string());
+    let something = template::get_template_new_comment(
+        template::Lang::new(config.lang).unwrap(),
+        "http://blog".to_string(),
+        "Mon commentaire".to_string(),
+    );
     match something {
         None => println!("Not found"),
         Some(template) => println!("{:?}", template),

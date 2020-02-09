@@ -3,11 +3,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: abronan/rust-circleci:latest
-
+      - image: circleci/rust:latest
     environment:
       TZ: "/usr/share/zoneinfo/Europe/Paris"
-
     steps:
       - checkout
       - restore_cache:
@@ -26,11 +24,3 @@ jobs:
       - run:
           name: Test
           command: rustup run stable cargo test
-      - run:
-          name: Upload Coverage
-          command: ./scripts/codecov.sh
-      - save_cache:
-          key: project-cache
-          paths:
-            - "~/.cargo"
-            - "./target"

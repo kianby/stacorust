@@ -1,0 +1,12 @@
+"Smoke test":
+  docker:
+    - image: circleci/rust:1.33.0
+  steps:
+    - attach_workspace:
+        at: .
+    - run:
+        name: "Execute binary with --help"
+        command: ./stacorust --help
+    - run:
+        name: "Execute binary with --help and check that output looks ok-ish"
+        command: ./stacorust configtest.toml | head -n1 | grep "Read configuration"

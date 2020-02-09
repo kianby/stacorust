@@ -11,7 +11,7 @@ jobs:
           name: Setup build environment
           command: |
             sudo apt-get update
-            sudo apt-get install -y cmake binutils-dev libcurl4-openssl-dev libiberty-dev libelf-dev libdw-dev python3
+            sudo apt-get install -y cmake binutils-dev libcurl4-openssl-dev libiberty-dev libelf-dev libdw-dev python3 python3.5-venv
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --default-toolchain none -y;
             export PATH=~/.cargo/bin:$PATH
             rustup install stable

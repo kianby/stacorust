@@ -112,7 +112,7 @@ mod tests {
 
     #[test]
     fn fill_template_test() {
-        let mut p : HashMap<String, &String> = HashMap::new();
+        let mut p: HashMap<String, &String> = HashMap::new();
         let var_value = "toto".to_string();
         let count_value = "25".to_string();
         p.insert("var".to_string(), &var_value);
@@ -125,7 +125,10 @@ mod tests {
 
     #[test]
     fn exist_template_test() {
-        assert_ne!(None, get_template_approve_comment(&Lang::Fr, &"".to_string()));
+        assert_ne!(
+            None,
+            get_template_approve_comment(&Lang::Fr, &"".to_string())
+        );
         assert_ne!(None, get_template_drop_comment(&Lang::Fr, &"".to_string()));
         assert_ne!(
             None,

@@ -43,7 +43,6 @@ fn main() {
     template::get_template_drop_comment(&lang, &p1);
     template::get_template_notify_message(&lang);
     template::get_template_rss_title_message(&lang, &p1);
-    
     // if let Err(e) = run(config) {
     //     println!("Application error: {}", e);
     //     std::process::exit(1);

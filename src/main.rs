@@ -30,8 +30,8 @@ fn main() {
     println!("db url = {}", config.db_url);
 
     let lang = template::Lang::new(config.lang).unwrap();
-    let p1 = "http://blog".to_string();
-    let p2 = "Mon commentaire".to_string();
+    let p1 = "http://blog";
+    let p2 = "Mon commentaire";
 
     let something = template::get_template_new_comment(&lang, &p1, &p2);
     match something {

@@ -3,7 +3,9 @@
 // --------------------------------------------------------------------------
 
 use std::collections::HashMap;
+use std::fmt;
 
+#[derive(Debug)]
 pub enum Lang {
     En,
     Fr,
@@ -11,20 +13,19 @@ pub enum Lang {
 
 impl Lang {
     pub fn new(value: String) -> Option<Self> {
-        if value == "fr" {
-            Some(Lang::Fr)
-        } else if value == "en" {
-            Some(Lang::En)
-        } else {
-            None
+        let langs = vec![Lang::En, Lang::Fr];
+        for lang in langs {
+            if lang.to_string().to_lowercase() == value.to_lowercase() {
+                return Some(lang);
+            }
         }
+        None
     }
+}
 
-    fn to_string(&self) -> String {
-        match *self {
-            Lang::En => "en".to_string(),
-            Lang::Fr => "fr".to_string(),
-        }
+impl fmt::Display for Lang {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
     }
 }
 
@@ -42,7 +43,7 @@ fn fill_template(template: String, params: &HashMap<String, String>) -> String {
 }
 
 fn get_template(lang: Lang, name: String, params: &HashMap<String, String>) -> Option<String> {
-    let pathname = format!("{}/{}.tpl", lang.to_string(), name);
+    let pathname = format!("{}/{}.tpl", lang.to_string().to_lowercase(), name);
     let something = Asset::get(pathname.as_str());
     match something {
         None => None,

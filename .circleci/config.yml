@@ -28,7 +28,7 @@ jobs:
           command: |
             export PATH=~/.cargo/bin:$PATH
             rustup component add clippy
-            cargo clippy --all -- -D warnings --verbose
+            cargo clippy --all -- -D warnings
       - run:
           name: Test
           command: |

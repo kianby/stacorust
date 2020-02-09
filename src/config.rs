@@ -14,7 +14,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(filename: &String) -> Result<Self, Box<dyn Error>> {
+    pub fn new(filename: &str) -> Result<Self, Box<dyn Error>> {
         let mut f = File::open(filename)?;
         let mut buffer = String::new();
         f.read_to_string(&mut buffer)?;

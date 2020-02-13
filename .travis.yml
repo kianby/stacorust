@@ -6,7 +6,8 @@ rust:
 before_script:
   - rustup component add clippy
 script:
-  - cargo clippy  
+  - cargo clippy
+  - cargo test
 jobs:
   fast_finish: true
 cache: cargo

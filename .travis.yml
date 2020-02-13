@@ -3,10 +3,11 @@ sudo: required
 rust:
   - stable
   - beta
-  - nightly
+before_script:
+  - rustup component add clippy
+script:
+  - cargo clippy  
 jobs:
-  allow_failures:
-    - rust: nightly
   fast_finish: true
 cache: cargo
 addons:

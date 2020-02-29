@@ -11,6 +11,15 @@ use std::io::prelude::*;
 pub struct Config {
     pub lang: String,
     pub db_url: String,
+    pub imap: ImapConfig,
+}
+
+#[derive(Deserialize)]
+pub struct ImapConfig {
+    pub host: String,
+    pub port: u16,
+    pub username: String,
+    pub password: String,
 }
 
 impl Config {

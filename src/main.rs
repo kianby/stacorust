@@ -10,6 +10,7 @@ extern crate rust_embed;
 mod config;
 use config::Config;
 
+mod mailer;
 mod template;
 
 fn main() {
@@ -43,6 +44,13 @@ fn main() {
     template::get_template_drop_comment(&lang, &p1);
     template::get_template_notify_message(&lang);
     template::get_template_rss_title_message(&lang, &p1);
+
+    let messages = mailer::fetch_inbox(config.imap).unwrap();
+    match messages {
+        None => println!("No e-mail"),
+        Some(message) => println!("{:?}", message),
+    }
+
     // if let Err(e) = run(config) {
     //     println!("Application error: {}", e);
     //     std::process::exit(1);

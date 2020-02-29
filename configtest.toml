@@ -1,5 +1,0 @@
-# TOML configuration
-
-lang = "fr"
-db_url = "sqlite:///db.sqlite"
-

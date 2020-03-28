@@ -37,15 +37,16 @@ fn main() {
     let something = template::get_template_new_comment(&lang, &p1, &p2);
     match something {
         None => println!("Not found"),
-        Some(template) => println!("{:?}", template),
+        Some(_template) => println!("Ok"),
     }
 
+    //println!("{:?}", template)
     template::get_template_approve_comment(&lang, &p1);
     template::get_template_drop_comment(&lang, &p1);
     template::get_template_notify_message(&lang);
     template::get_template_rss_title_message(&lang, &p1);
 
-    let messages = mailer::fetch_inbox(config.imap).unwrap();
+    let messages = mailer::fetch_inbox(config.imap);
     match messages {
         None => println!("No e-mail"),
         Some(message) => println!("{:?}", message),
